@@ -1,0 +1,855 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>APARAITECH | Client Meeting Request</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0b1f3a, #1261a0);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .company-name {
+            font-weight: bold;
+            color: #6ee7ff;
+        }
+
+        form {
+            padding: 35px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #0b1f3a;
+            border-left: 4px solid #1261a0;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e11d48;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1261a0;
+            box-shadow: 0 0 0 3px rgba(18, 97, 160, 0.1);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .meeting-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .option {
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .option:hover {
+            border-color: #1261a0;
+            background: #f0f7ff;
+        }
+
+        .option input {
+            width: auto;
+            margin-right: 6px;
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .domain {
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .domain:hover {
+            border-color: #1261a0;
+            background: #f0f7ff;
+        }
+
+        .domain input {
+            width: auto;
+            margin-right: 7px;
+        }
+
+        .privacy {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .checkbox input {
+            width: auto;
+            margin-top: 3px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #1261a0, #0b1f3a);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 7px 20px rgba(11, 31, 58, 0.25);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .contact-info {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #1261a0;
+        }
+
+        @media (max-width: 650px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+
+            .meeting-options {
+                grid-template-columns: 1fr;
+            }
+
+            .domain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            form {
+                padding: 22px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>APARAITECH</h1>
+
+        <p>
+            <strong>Client Meeting & Project Consultation</strong>
+        </p>
+
+        <p>
+            Schedule a professional discussion with the
+            <span class="company-name">APARAITECH</span> team
+            regarding your project, technology requirements,
+            business solutions or collaboration opportunities.
+        </p>
+    </div>
+
+
+    <form action="#" method="POST">
+
+        <!-- CLIENT INFORMATION -->
+        <div class="section">
+
+            <h2 class="section-title">
+                👤 Client Information
+            </h2>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label>
+                        Full Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Designation / Job Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="designation"
+                        placeholder="e.g. Founder, Manager, Director">
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label>
+                        Business / Company Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        name="company_name"
+                        placeholder="Enter company name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Company Website
+                    </label>
+
+                    <input
+                        type="url"
+                        name="website"
+                        placeholder="https://example.com">
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+                    <label>
+                        Email Address
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="name@company.com"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Phone Number
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="+91 XXXXX XXXXX"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    WhatsApp Number
+                </label>
+
+                <input
+                    type="tel"
+                    name="whatsapp"
+                    placeholder="+91 XXXXX XXXXX">
+
+            </div>
+
+        </div>
+
+
+        <!-- MEETING DETAILS -->
+        <div class="section">
+
+            <h2 class="section-title">
+                📅 Meeting Details
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Meeting Purpose
+                    <span class="required">*</span>
+                </label>
+
+                <select name="meeting_purpose" required>
+
+                    <option value="">
+                        Select meeting purpose
+                    </option>
+
+                    <option>
+                        Project Discussion
+                    </option>
+
+                    <option>
+                        Software Development
+                    </option>
+
+                    <option>
+                        Website Development
+                    </option>
+
+                    <option>
+                        Mobile App Development
+                    </option>
+
+                    <option>
+                        AI / Machine Learning Solution
+                    </option>
+
+                    <option>
+                        Business Consultation
+                    </option>
+
+                    <option>
+                        Digital Marketing
+                    </option>
+
+                    <option>
+                        Technology Consultation
+                    </option>
+
+                    <option>
+                        Partnership / Collaboration
+                    </option>
+
+                    <option>
+                        Service Inquiry
+                    </option>
+
+                    <option>
+                        Existing Client Discussion
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Preferred Meeting Mode
+                    <span class="required">*</span>
+                </label>
+
+                <div class="meeting-options">
+
+                    <label class="option">
+                        <input
+                            type="radio"
+                            name="meeting_mode"
+                            value="Google Meet"
+                            required>
+                        💻 Google Meet
+                    </label>
+
+                    <label class="option">
+                        <input
+                            type="radio"
+                            name="meeting_mode"
+                            value="Zoom">
+                        🎥 Zoom
+                    </label>
+
+                    <label class="option">
+                        <input
+                            type="radio"
+                            name="meeting_mode"
+                            value="Phone Call">
+                        📞 Phone Call
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        Preferred Meeting Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        name="meeting_date"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Preferred Meeting Time
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="time"
+                        name="meeting_time"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Alternative Date / Time
+                </label>
+
+                <input
+                    type="text"
+                    name="alternative_time"
+                    placeholder="Example: 10 Oct, 3:00 PM">
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT INFORMATION -->
+        <div class="section">
+
+            <h2 class="section-title">
+                💼 Project / Business Requirements
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Select Service / Technology Domain
+                    <span class="required">*</span>
+                </label>
+
+                <div class="domain-grid">
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Web Development" required>
+                        Web Development
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Full Stack Development">
+                        Full Stack Development
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Mobile App Development">
+                        Mobile App Development
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Artificial Intelligence">
+                        Artificial Intelligence
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Machine Learning">
+                        Machine Learning
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Data Science">
+                        Data Science
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Data Analytics">
+                        Data Analytics
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Cyber Security">
+                        Cyber Security
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Cloud Computing">
+                        Cloud Computing
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="DevOps">
+                        DevOps
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="UI UX Design">
+                        UI / UX Design
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Digital Marketing">
+                        Digital Marketing
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Business Consulting">
+                        Business Consulting
+                    </label>
+
+                    <label class="domain">
+                        <input type="radio" name="domain" value="Other">
+                        Other
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Project / Requirement Details
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    name="project_details"
+                    placeholder="Briefly describe your project, business requirement, problem statement or discussion topic..."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        Estimated Project Budget
+                    </label>
+
+                    <select name="budget">
+
+                        <option value="">
+                            Select budget range
+                        </option>
+
+                        <option>
+                            Not Decided Yet
+                        </option>
+
+                        <option>
+                            Under ₹50,000
+                        </option>
+
+                        <option>
+                            ₹50,000 – ₹1,00,000
+                        </option>
+
+                        <option>
+                            ₹1,00,000 – ₹5,00,000
+                        </option>
+
+                        <option>
+                            ₹5,00,000+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expected Project Timeline
+                    </label>
+
+                    <select name="timeline">
+
+                        <option value="">
+                            Select timeline
+                        </option>
+
+                        <option>
+                            Urgent
+                        </option>
+
+                        <option>
+                            Within 1 Month
+                        </option>
+
+                        <option>
+                            1 – 3 Months
+                        </option>
+
+                        <option>
+                            3 – 6 Months
+                        </option>
+
+                        <option>
+                            More than 6 Months
+                        </option>
+
+                        <option>
+                            Not Decided
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADDITIONAL INFORMATION -->
+        <div class="section">
+
+            <h2 class="section-title">
+                📝 Additional Information
+            </h2>
+
+            <div class="form-group">
+
+                <label>
+                    Anything else you would like APARAITECH to know?
+                </label>
+
+                <textarea
+                    name="additional_message"
+                    placeholder="Additional notes, questions or requirements..."></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    How did you hear about APARAITECH?
+                </label>
+
+                <select name="source">
+
+                    <option value="">
+                        Select an option
+                    </option>
+
+                    <option>
+                        Google Search
+                    </option>
+
+                    <option>
+                        LinkedIn
+                    </option>
+
+                    <option>
+                        Instagram
+                    </option>
+
+                    <option>
+                        WhatsApp
+                    </option>
+
+                    <option>
+                        Referral
+                    </option>
+
+                    <option>
+                        Existing Client
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONSENT -->
+        <div class="privacy">
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    name="consent"
+                    required>
+
+                <span>
+                    I confirm that the information provided above is accurate.
+                    I agree that APARAITECH may contact me regarding my
+                    meeting request, project requirements and relevant
+                    business services.
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <!-- SUBMIT -->
+        <button
+            type="submit"
+            class="submit-btn">
+
+            📅 Request Meeting with APARAITECH
+
+        </button>
+
+    </form>
+
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <strong>APARAITECH</strong>
+
+        <br>
+
+        Technology • Innovation • Digital Solutions
+
+        <div class="contact-info">
+            Professional Projects | Business Solutions | Technology Consulting
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
